@@ -2,6 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -46,14 +47,18 @@ class ThingClassTest {
     void isNumberValid() {
         //arrange
         ThingClass thing = new ThingClass();
+        List<String> validNumbers = List.of("(123) 456-7890", "987-654-3210", "(555) 123-4567", "123 456 7890", "555 987 6543");
+        List<String> invalidNumbers = List.of("123-4567", "(123) 456-789", "987-654-321", "(555) 123-45678", "555-987-65432");
 
         //act
-        thing.readAllLinesAndStoreInField();
+        //thing.readAllLinesAndStoreInField();
         boolean valid = thing.isNumberValid("123-456-7890");
         boolean invalid = thing.isNumberValid("123-456-789");
 
         //assert
         Assertions.assertTrue(valid);
         Assertions.assertFalse(invalid);
+        Assertions.assertTrue(validNumbers.stream().allMatch(thing::isNumberValid));
+        Assertions.assertTrue(invalidNumbers.stream().noneMatch(thing::isNumberValid));
     }
 }
