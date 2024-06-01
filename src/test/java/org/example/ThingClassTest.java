@@ -13,7 +13,6 @@ class ThingClassTest {
     @Test
     public void readAllLinesFromField() {
         //arrange
-        List<String> expectedList = List.of("Hello, world!", "My Name is bob");
         ThingClass thing = new ThingClass();
 
         //act
