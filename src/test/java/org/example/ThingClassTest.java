@@ -61,4 +61,37 @@ class ThingClassTest {
         Assertions.assertTrue(validNumbers.stream().allMatch(thing::isNumberValid));
         Assertions.assertTrue(invalidNumbers.stream().noneMatch(thing::isNumberValid));
     }
+
+    @Test
+    void numberOfValidNumbers() {
+        // arrange
+//        List<String> validAndInvalidNumbers = List.of("(123) 456-7890", "987-654-3210", "(555) 123-4567", "123 456 7890", "555 987 6543", "123-4567", "(123) 456-789", "987-654-321", "(555) 123-45678", "555-987-65432");
+        ThingClass thing = new ThingClass();
+        thing.readAllLinesAndStoreInField();
+        thing.removeComments();
+        Boolean RemoveHappened = thing.removeEmptyLines();
+
+        // act
+        Integer validNumbers = thing.numberOfValidNumbers();
+
+        // assert
+        Assertions.assertEquals(10, thing.numberOfLines());
+        Assertions.assertEquals(5, validNumbers);
+        Assertions.assertTrue(RemoveHappened);
+    }
+
+    @Test
+    void numberOfInvalidNumbers() {
+        // arrange
+        ThingClass thing = new ThingClass();
+        thing.readAllLinesAndStoreInField();
+        thing.removeComments();
+        thing.removeEmptyLines();
+
+        // act
+        Integer invalidNumbers = thing.numberOfInvalidNumbers();
+
+        // assert
+        Assertions.assertEquals(5, invalidNumbers);
+    }
 }

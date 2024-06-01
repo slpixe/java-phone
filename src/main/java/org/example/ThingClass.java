@@ -38,9 +38,41 @@ public class ThingClass {
         return count > 0;
     }
 
+    public Boolean removeEmptyLines() {
+        // iterate over lines, and if the line is empty then remove that line, if any empty lines are removed return true
+        // otherwise return false
+        int count = 0;
+
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).isEmpty()) {
+                lines.remove(i);
+                count++;
+                i--;
+            }
+        }
+
+        return count > 0;
+    }
+
+    public Integer numberOfLines() {
+        //return the number of lines
+        System.out.println(lines);
+        return lines.size();
+    }
+
     public boolean isNumberValid(String number) {
         //if number matches the regex return true, otherwise return false
         return REGEX_VALID_PHONE_NUMBER.matcher(number).matches();
+    }
+
+    public Integer numberOfValidNumbers() {
+        //return the number of valid phone numbers
+        return (int) lines.stream().filter(this::isNumberValid).count();
+    }
+
+    public Integer numberOfInvalidNumbers() {
+        //return the number of invalid phone numbers
+        return (int) lines.stream().filter(line ->!isNumberValid(line)).count();
     }
 
     /*
