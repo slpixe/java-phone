@@ -63,7 +63,7 @@ public class PhoneClass {
      * Removes empty lines from the 'lines' field.
      * @return true if any empty lines are removed, false otherwise.
      */
-    public Boolean removeEmptyLines() {
+    public boolean removeEmptyLines() {
         int count = 0;
         for (int i = 0; i < lines.size(); i++) {
             if (lines.get(i).isEmpty()) {
@@ -79,7 +79,7 @@ public class PhoneClass {
      * Returns the number of lines in the 'lines' field.
      * @return the number of lines.
      */
-    public Integer numberOfLines() {
+    public int numberOfLines() {
         return lines.size();
     }
 
@@ -96,7 +96,7 @@ public class PhoneClass {
      * Returns the number of valid phone numbers in the 'lines' field.
      * @return the number of valid phone numbers.
      */
-    public Integer numberOfValidNumbers() {
+    public int numberOfValidNumbers() {
         return (int) lines.stream().filter(this::isNumberValid).count();
     }
 
@@ -104,7 +104,7 @@ public class PhoneClass {
      * Returns the number of invalid phone numbers in the 'lines' field.
      * @return the number of invalid phone numbers.
      */
-    public Integer numberOfInvalidNumbers() {
+    public int numberOfInvalidNumbers() {
         return (int) lines.stream().filter(line ->!isNumberValid(line)).count();
     }
 

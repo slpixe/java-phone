@@ -37,3 +37,9 @@ phoneClass.readAllLinesAndStoreInField();
     validNumbers.forEach(System.out::println);
 }
 ```
+
+## To generate javadoc documentation
+
+1. Make sure to have maven installed e.g. `sdkman install maven`
+2. Either run `mvn javadoc:javadoc` 
+3. or in Intellij select `Maven` -> `Lifecycle` -> `clean` (run) -> `compile` (run)
