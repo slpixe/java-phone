@@ -6,10 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ThingClass {
 
     public List<String> lines = null;
+    public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("^\\d{3}-\\d{3}-\\d{4}$");
 
     public void readAllLinesAndStoreInField() {
         try {
@@ -34,6 +36,11 @@ public class ThingClass {
         }
 
         return count > 0;
+    }
+
+    public boolean isNumberValid(String number) {
+        //if number matches the regex return true, otherwise return false
+        return REGEX_VALID_PHONE_NUMBER.matcher(number).matches();
     }
 
     /*

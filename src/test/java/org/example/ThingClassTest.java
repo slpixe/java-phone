@@ -31,11 +31,29 @@ class ThingClassTest {
         //act
         thing.readAllLinesAndStoreInField();
         int oldLines = thing.lines.size();
-        thing.removeComments();
+        boolean removed = thing.removeComments();
         int newLines = thing.lines.size();
+        boolean removedSecondTime = thing.removeComments();
 
         // assert
         // that newLines is less than oldLines
         Assertions.assertTrue(newLines < oldLines);
+        Assertions.assertTrue(removed);
+        Assertions.assertFalse(removedSecondTime);
+    }
+
+    @Test
+    void isNumberValid() {
+        //arrange
+        ThingClass thing = new ThingClass();
+
+        //act
+        thing.readAllLinesAndStoreInField();
+        boolean valid = thing.isNumberValid("123-456-7890");
+        boolean invalid = thing.isNumberValid("123-456-789");
+
+        //assert
+        Assertions.assertTrue(valid);
+        Assertions.assertFalse(invalid);
     }
 }
