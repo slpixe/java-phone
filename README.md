@@ -19,6 +19,8 @@ The regex pattern used for valid phone numbers is as follows:
 - `(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})` (e.g., 123 456 7890)
 - `(\\d{3}-{1}\\d{3}-\\d{4})` (e.g., 123-456-7890)
 
+These were tested on regex101 [Regex101 - java phone number validation](https://regex101.com/r/rC9rKO/2)
+
 ## Example Usage
 
 ```java
