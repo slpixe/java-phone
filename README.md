@@ -1,6 +1,10 @@
 # PhoneClass
 The PhoneClass is a Java class that provides functionality related to phone numbers. It reads phone numbers from a file, validates them, and performs various operations.
 
+## Javadocs
+
+To read the Javadocs please visit [https://slpixe.github.io/java-phone/](https://slpixe.github.io/java-phone/)
+
 ## Usage
 1. Reading Phone Numbers from a File The readAllLinesAndStoreInField() method reads phone numbers from a file named fileTest.txt located in the src/main/resources directory. The phone numbers are stored in the lines field.
 2. Removing Comments The removeComments() method removes any lines starting with a hash (#) character. If any comments are removed, it returns true; otherwise, it returns false.
