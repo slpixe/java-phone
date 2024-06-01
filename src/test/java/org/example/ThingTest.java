@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -30,5 +31,22 @@ class ThingTest {
         assertThat(data.get(0), equalTo(expectedList.get(0)));
         assertThat(data.get(1), equalTo(expectedList.get(1)));
         assertThat(data, equalTo(expectedList));
+        Assertions.assertIterableEquals(data, expectedList);
+    }
+
+    @Test
+    public void readAllLinesFromField() {
+        List<String> expectedList = List.of("Hello, world!", "My Name is bob");
+        Thing thing = new Thing();
+        thing.readAllLinesAndStoreInField();
+        Assertions.assertIterableEquals(thing.lines, expectedList);
+    }
+
+    @Test
+    public void readAllLinesFromMethod() {
+        List<String> expectedList = List.of("Hello, world!", "My Name is bob");
+        Thing thing = new Thing();
+        List<String> meow = thing.readAllLinesAndReturn();
+        Assertions.assertIterableEquals(meow, expectedList);
     }
 }
