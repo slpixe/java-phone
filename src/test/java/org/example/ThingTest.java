@@ -45,8 +45,7 @@ class ThingTest {
     @Test
     public void readAllLinesFromMethod() {
         List<String> expectedList = List.of("Hello, world!", "My Name is bob");
-        Thing thing = new Thing();
-        List<String> meow = thing.readAllLinesAndReturn();
+        List<String> meow = Thing.readAllLinesAndReturn();
         Assertions.assertIterableEquals(meow, expectedList);
     }
 }

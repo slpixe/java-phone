@@ -23,7 +23,7 @@ public class Thing {
         }
     }
 
-    public List<String> readAllLinesAndReturn() {
+    static public List<String> readAllLinesAndReturn() {
         try {
             Path file = Paths.get("src/main/resources/fileTest.txt");
             return Files.readAllLines(file, StandardCharsets.UTF_8);
