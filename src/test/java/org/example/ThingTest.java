@@ -24,11 +24,11 @@ class ThingTest {
 //        String data = Thing.readFromInputStream(inputStream);
 
         Path file = Paths.get("src/main/resources/fileTest.txt");
-        String dataZero = Files.readAllLines(file, StandardCharsets.UTF_8).get(0);
-        String dataOne = Files.readAllLines(file, StandardCharsets.UTF_8).get(1);
+        List<String> data = Files.readAllLines(file, StandardCharsets.UTF_8);
 
 //        assertThat(data, containsString(expectedData));
-        assertThat(dataZero, equalTo(expectedList.get(0)));
-        assertThat(dataOne, equalTo(expectedList.get(1)));
+        assertThat(data.get(0), equalTo(expectedList.get(0)));
+        assertThat(data.get(1), equalTo(expectedList.get(1)));
+        assertThat(data, equalTo(expectedList));
     }
 }
