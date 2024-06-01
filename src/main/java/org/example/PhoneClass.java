@@ -32,6 +32,11 @@ public class PhoneClass {
     private static final Logger LOGGER = Logger.getLogger(PhoneClass.class.getName());
 
     /**
+     * Construct
+     */
+    PhoneClass(){}
+
+    /**
      * Reads all lines from the file and stores them in the 'lines' field.
      */
     public void readAllLinesAndStoreInField() {
