@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.logging.Logger;
 
-public class ThingClass {
+public class PhoneClass {
 
     public List<String> lines = null;
     public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("(\\(\\d{3}\\)\\s{1}\\d{3}-{1}\\d{4})|(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})|(\\d{3}-{1}\\d{3}-\\d{4})");
-    private static final Logger LOGGER = Logger.getLogger(ThingClass.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(PhoneClass.class.getName());
 
 
     public void readAllLinesAndStoreInField() {
