@@ -94,4 +94,21 @@ class ThingClassTest {
         // assert
         Assertions.assertEquals(5, invalidNumbers);
     }
+
+    @Test
+    void listOfValidNumbers() {
+        // arrange
+        ThingClass thing = new ThingClass();
+        thing.readAllLinesAndStoreInField();
+        thing.removeComments();
+        thing.removeEmptyLines();
+
+        // act
+        List<String> validNumbers = thing.listOfValidNumbers();
+
+        // assert
+        Assertions.assertEquals(10, thing.numberOfLines());
+        Assertions.assertEquals(5, validNumbers.size());
+        Assertions.assertTrue(validNumbers.containsAll(List.of("(123) 456-7890", "987-654-3210", "(555) 123-4567", "123 456 7890", "555 987 6543")));
+    }
 }

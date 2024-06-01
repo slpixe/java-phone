@@ -56,7 +56,7 @@ public class ThingClass {
 
     public Integer numberOfLines() {
         //return the number of lines
-        System.out.println(lines);
+//        System.out.println(lines);
         return lines.size();
     }
 
@@ -73,6 +73,11 @@ public class ThingClass {
     public Integer numberOfInvalidNumbers() {
         //return the number of invalid phone numbers
         return (int) lines.stream().filter(line ->!isNumberValid(line)).count();
+    }
+
+    public List<String> listOfValidNumbers() {
+        //return a list of valid phone numbers
+        return lines.stream().filter(this::isNumberValid).toList();
     }
 
     /*
