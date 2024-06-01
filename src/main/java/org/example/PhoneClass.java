@@ -9,13 +9,31 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.logging.Logger;
 
+/**
+ * This class represents a phone number utility.
+ */
 public class PhoneClass {
 
+    /**
+     * List of lines read from the file.
+     */
     public List<String> lines = null;
+
+    /**
+     * Regular expression pattern to validate phone numbers.
+     * Matches US phone numbers in the following formats:
+     * (123) 456-7890, 123 456 7890, 123-456-7890
+     */
     public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("(\\(\\d{3}\\)\\s{1}\\d{3}-{1}\\d{4})|(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})|(\\d{3}-{1}\\d{3}-\\d{4})");
+
+    /**
+     * Logger for logging errors.
+     */
     private static final Logger LOGGER = Logger.getLogger(PhoneClass.class.getName());
 
-
+    /**
+     * Reads all lines from the file and stores them in the 'lines' field.
+     */
     public void readAllLinesAndStoreInField() {
         try {
             Path file = Paths.get("src/main/resources/fileTest.txt");
@@ -25,12 +43,12 @@ public class PhoneClass {
         }
     }
 
+    /**
+     * Removes lines that start with a hash (#) symbol.
+     * @return true if any comments are removed, false otherwise.
+     */
     public boolean removeComments() {
-        // iterate over lines, and if the line starts with a hash #
-        // then remove that line, if any comments are removed return true
-        // otherwise return false
         int count = 0;
-
         for (int i = 0; i < lines.size(); i++) {
             if (lines.get(i).startsWith("#")) {
                 lines.remove(i);
@@ -38,16 +56,15 @@ public class PhoneClass {
                 i--;
             }
         }
-
         return count > 0;
     }
 
+    /**
+     * Removes empty lines from the 'lines' field.
+     * @return true if any empty lines are removed, false otherwise.
+     */
     public Boolean removeEmptyLines() {
-        // iterate over lines, and if the line is empty then remove
-        // that line, if any empty lines are removed return true
-        // otherwise return false
         int count = 0;
-
         for (int i = 0; i < lines.size(); i++) {
             if (lines.get(i).isEmpty()) {
                 lines.remove(i);
@@ -55,32 +72,47 @@ public class PhoneClass {
                 i--;
             }
         }
-
         return count > 0;
     }
 
+    /**
+     * Returns the number of lines in the 'lines' field.
+     * @return the number of lines.
+     */
     public Integer numberOfLines() {
-        //return the number of lines
         return lines.size();
     }
 
+    /**
+     * Checks if a given number matches the REGEX_VALID_PHONE_NUMBER pattern.
+     * @param number the phone number to validate.
+     * @return true if the number is valid, false otherwise.
+     */
     public boolean isNumberValid(String number) {
-        //if number matches the regex return true, otherwise return false
         return REGEX_VALID_PHONE_NUMBER.matcher(number).matches();
     }
 
+    /**
+     * Returns the number of valid phone numbers in the 'lines' field.
+     * @return the number of valid phone numbers.
+     */
     public Integer numberOfValidNumbers() {
-        //return the number of valid phone numbers
         return (int) lines.stream().filter(this::isNumberValid).count();
     }
 
+    /**
+     * Returns the number of invalid phone numbers in the 'lines' field.
+     * @return the number of invalid phone numbers.
+     */
     public Integer numberOfInvalidNumbers() {
-        //return the number of invalid phone numbers
         return (int) lines.stream().filter(line ->!isNumberValid(line)).count();
     }
 
+    /**
+     * Returns a list of valid phone numbers from the 'lines' field.
+     * @return a list of valid phone numbers.
+     */
     public List<String> listOfValidNumbers() {
-        //return a list of valid phone numbers
         return lines.stream().filter(this::isNumberValid).toList();
     }
 }
