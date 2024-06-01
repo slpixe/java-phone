@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class ThingClass {
 
     public List<String> lines = null;
-    public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("^\\d{3}-\\d{3}-\\d{4}$");
+    public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("(\\(\\d{3}\\)\\s{1}\\d{3}-{1}\\d{4})|(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})|(\\d{3}-{1}\\d{3}-\\d{4})");
 
     public void readAllLinesAndStoreInField() {
         try {
