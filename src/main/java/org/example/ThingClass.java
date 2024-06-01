@@ -7,23 +7,27 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.logging.Logger;
 
 public class ThingClass {
 
     public List<String> lines = null;
     public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("(\\(\\d{3}\\)\\s{1}\\d{3}-{1}\\d{4})|(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})|(\\d{3}-{1}\\d{3}-\\d{4})");
+    private static final Logger LOGGER = Logger.getLogger(ThingClass.class.getName());
+
 
     public void readAllLinesAndStoreInField() {
         try {
             Path file = Paths.get("src/main/resources/fileTest.txt");
             lines = Files.readAllLines(file, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.severe("Error reading file: " + e.getMessage());
         }
     }
 
     public boolean removeComments() {
-        // iterate over lines, and if the line starts with a hash # then remove that line, if any comments are removed return true
+        // iterate over lines, and if the line starts with a hash #
+        // then remove that line, if any comments are removed return true
         // otherwise return false
         int count = 0;
 
@@ -39,7 +43,8 @@ public class ThingClass {
     }
 
     public Boolean removeEmptyLines() {
-        // iterate over lines, and if the line is empty then remove that line, if any empty lines are removed return true
+        // iterate over lines, and if the line is empty then remove
+        // that line, if any empty lines are removed return true
         // otherwise return false
         int count = 0;
 
@@ -56,7 +61,6 @@ public class ThingClass {
 
     public Integer numberOfLines() {
         //return the number of lines
-//        System.out.println(lines);
         return lines.size();
     }
 
@@ -79,11 +83,4 @@ public class ThingClass {
         //return a list of valid phone numbers
         return lines.stream().filter(this::isNumberValid).toList();
     }
-
-    /*
-    file = getFile("location");
-    validNumbers = getValidNums(file);
-    invalidNumbers = getInvalidNums(file);
-    int numNums = getNumOfNums(file);
-     */
 }
