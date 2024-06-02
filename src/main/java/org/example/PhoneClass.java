@@ -32,6 +32,11 @@ public class PhoneClass {
     private static final Logger LOGGER = Logger.getLogger(PhoneClass.class.getName());
 
     /**
+     * The file path for reading phone numbers.
+     */
+    public static final String FILE_PATH = "src/main/resources/fileTest.txt";
+
+    /**
      * Construct
      */
     PhoneClass(){}
@@ -41,7 +46,7 @@ public class PhoneClass {
      */
     public void readAllLinesAndStoreInField() {
         try {
-            Path file = Paths.get("src/main/resources/fileTest.txt");
+            Path file = Paths.get(FILE_PATH);
             lines = Files.readAllLines(file, StandardCharsets.UTF_8);
         } catch (IOException e) {
             LOGGER.severe("Error reading file: " + e.getMessage());
