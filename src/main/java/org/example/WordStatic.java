@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,45 +40,27 @@ public class WordStatic {
         return lines.size();
     }
 
-    static public int numberOfWords(List<String> lines) {
-        //return lines.stream().map(String::split).flatMap(List::stream).distinct().count();
-        return lines
+    static public int numberOfWordsWPlus(List<String> lines) {
+        int bob = lines
                 .stream()
                 .flatMap(
-                        line -> Stream.of(line.split("\\s+"))
+                        line -> Stream.of(line.split("\\w+"))
                 )
-                .distinct()
                 .collect(
                         Collectors.toList()
                 )
                 .size();
+        System.out.println(bob);
+        return bob;
     }
 
-//    static public List<String> removeComments(List<String> lines) {
-//        return lines.stream().filter(line -> !line.startsWith("#")).toList();
-//    }
-//
-//    static public List<String> removeEmptyLines(@org.jetbrains.annotations.NotNull List<String> lines) {
-//        return lines.stream().filter(line -> !line.isEmpty()).toList();
-//    }
-//
-//    static public int numberOfLines(List<String> lines) {
-//        return lines.size();
-//    }
-//
-//    static public boolean isNumberValid(String number) {
-//        return REGEX_VALID_PHONE_NUMBER.matcher(number).matches();
-//    }
-//
-//    static public int numberOfValidNumbers(List<String> lines) {
-//        return (int) lines.stream().filter(WordStatic::isNumberValid).count();
-//    }
-//
-//    static public int numberOfInvalidNumbers(List<String> lines) {
-//        return (int) lines.stream().filter(line -> !isNumberValid(line)).count();
-//    }
-//
-//    static public List<String> listOfValidNumbers(List<String> lines) {
-//        return lines.stream().filter(WordStatic::isNumberValid).toList();
-//    }
+    public static int runTest(String regex, String text) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        int matches = 0;
+        while (matcher.find()) {
+            matches++;
+        }
+        return matches;
+    }
 }

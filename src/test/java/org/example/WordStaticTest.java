@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordStaticTest {
 
@@ -42,11 +43,11 @@ class WordStaticTest {
 
         //assert
         assertThat(numberOfLines, org.hamcrest.Matchers.greaterThan(5));
-        Assertions.assertEquals(37, numberOfLines);
+        assertEquals(37, numberOfLines);
     }
 
     @Test
-    void numberOfWords() {
+    void numberOfWordsWPlus() {
         //arrange
         List<String> sevenWords = List.of("Whiskerby and the Box of Beguiling Bastet");
         List<String> seventyTwoWords = List.of(
@@ -56,13 +57,22 @@ class WordStaticTest {
         );
 
         //act
-        int numberOfSevenWords = WordStatic.numberOfWords(sevenWords);
-        int numberOfSeventyTwoWords = WordStatic.numberOfWords(seventyTwoWords);
+        int numberOfSevenWords = WordStatic.numberOfWordsWPlus(sevenWords);
+        int numberOfSeventyTwoWords = WordStatic.numberOfWordsWPlus(seventyTwoWords);
 
         //assert
-        Assertions.assertEquals(7, numberOfSevenWords);
+        assertEquals(7, numberOfSevenWords);
         Assertions.assertEquals(72, numberOfSeventyTwoWords);
 //        assertThat(numberOfWords, org.hamcrest.Matchers.greaterThan(5));
 //        Assertions.assertEquals(72, numberOfWords);
+    }
+
+    @Test
+    void runTest() {
+        int matches1 = WordStatic.runTest("foo", "foofoo");
+        assertEquals(2, matches1);;
+
+        int matches2 = WordStatic.runTest("\\w+", "Whiskerby and the Box of Beguiling Bastet");
+        assertEquals(7, matches2);
     }
 }
