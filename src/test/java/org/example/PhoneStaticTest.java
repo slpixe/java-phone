@@ -89,4 +89,34 @@ class PhoneStaticTest {
         //assert
         Assertions.assertEquals(4, numberOfLines);
     }
+
+    @Test
+    void isNumberValid() {
+        //arrange
+        //act
+        boolean validNumber = PhoneStatic.isNumberValid("123-456-7890");
+        boolean invalidNumber = PhoneStatic.isNumberValid("123-456-789");
+
+        //assert
+        Assertions.assertTrue(validNumber);
+        Assertions.assertFalse(invalidNumber);
+    }
+
+    @Test
+    void numberOfValidNumbers() {
+        //arrange
+        List<String> lines = List.of(
+                "#Valid phone numbers:",
+                "123-456-7891", //valid number
+                "",
+                "123-456-7802", //valid number
+                "123-456-780" //invalid number
+        );
+
+        //act
+        int numberOfValidNumbers = PhoneStatic.numberOfValidNumbers(lines);
+
+        //assert
+        Assertions.assertEquals(2, numberOfValidNumbers);
+    }
 }

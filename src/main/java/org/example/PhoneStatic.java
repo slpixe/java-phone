@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * This class represents a static utility for handling phone numbers.
@@ -14,6 +15,7 @@ import java.util.List;
 public class PhoneStatic {
 
     public static final String FILE_PATH = "src/main/resources/fileTest.txt";
+    public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("(\\(\\d{3}\\)\\s{1}\\d{3}-{1}\\d{4})|(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})|(\\d{3}-{1}\\d{3}-\\d{4})");
 
     /**
      * Default constructor.
@@ -51,5 +53,13 @@ public class PhoneStatic {
 
     static public int numberOfLines(List<String> lines) {
         return lines.size();
+    }
+
+    static public boolean isNumberValid(String number) {
+        return REGEX_VALID_PHONE_NUMBER.matcher(number).matches();
+    }
+
+    static public int numberOfValidNumbers(List<String> lines) {
+        return (int) lines.stream().filter(PhoneStatic::isNumberValid).count();
     }
 }
