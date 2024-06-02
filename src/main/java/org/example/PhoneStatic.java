@@ -13,27 +13,15 @@ import java.util.List;
  */
 public class PhoneStatic {
 
-    /**
-     * A list to store the lines of phone numbers read from the file.
-     */
-    public List<String> lines = null;
+    public static final String FILE_PATH = "src/main/resources/fileTest.txt";
 
     /**
      * Default constructor.
      */
     PhoneStatic(){}
 
-    /**
-     * Reads all lines from the file "src/main/resources/fileTest.txt" and stores them in the 'lines' field.
-     * If an IOException occurs during the reading process, it will be caught and printed to the console.
-     */
-    public void readAllLinesAndStoreInField() {
-        try {
-            Path file = Paths.get("src/main/resources/fileTest.txt");
-            lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    static public List<String> readAllLinesAndReturn() {
+        return PhoneStatic.readAllLinesAndReturn(FILE_PATH);
     }
 
     /**
@@ -43,13 +31,21 @@ public class PhoneStatic {
      *
      * @return A List of strings representing the lines from the file.
      */
-    static public List<String> readAllLinesAndReturn() {
+    static public List<String> readAllLinesAndReturn(String filePath) {
         try {
-            Path file = Paths.get("src/main/resources/fileTest.txt");
+            Path file = Paths.get(filePath);
             return Files.readAllLines(file, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return List.of();
+    }
+
+    static public List<String> removeComments(List<String> lines) {
+        return lines.stream().filter(line ->!line.startsWith("#")).toList();
+    }
+
+    static public List<String> removeEmptyLines(List<String> lines) {
+        return lines.stream().filter(line ->!line.isEmpty()).toList();
     }
 }
