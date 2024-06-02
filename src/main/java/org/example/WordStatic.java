@@ -39,11 +39,11 @@ public class WordStatic {
     }
 
     static public int numberOfWords(List<String> lines) {
-        final Pattern MATCH_ALL_WORDS_INCLUDING_HYPHENATED = Pattern.compile("([\\w-’']+)");
+        final Pattern MATCH_ALL_WORDS_PATTERN = Pattern.compile("([\\w-’']+)");
         //int numberOfWordsOverAllLines = 0;
 
 //        for (String line : lines) {
-//            Matcher matcher = MATCH_ALL_WORDS_INCLUDING_HYPHENATED.matcher(line);
+//            Matcher matcher = MATCH_ALL_WORDS_PATTERN.matcher(line);
 //            while (matcher.find()) {
 //                numberOfWordsOverAllLines++;
 //            }
@@ -55,7 +55,7 @@ public class WordStatic {
         return lines
                 .stream()
                 .mapToInt(
-                        line -> (int) MATCH_ALL_WORDS_INCLUDING_HYPHENATED
+                        line -> (int) MATCH_ALL_WORDS_PATTERN
                                 .matcher(line)
                                 .results()
                                 .count()
