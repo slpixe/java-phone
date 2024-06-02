@@ -137,4 +137,26 @@ class PhoneStaticTest {
         //assert
         Assertions.assertEquals(3, numberOfInvalidNumbers);
     }
+
+    @Test
+    void listOfValidNumbers() {
+        //arrange
+        List<String> lines = List.of(
+                "#Valid phone numbers:", //NaN
+                "123-456-7891", //valid number
+                "", //NaN
+                "123-456-7802", //valid number
+                "123-456-780" //invalid number
+        );
+
+        //act
+        List<String> listOfValidNumbers = PhoneStatic.listOfValidNumbers(lines);
+
+        //assert
+        Assertions.assertEquals(2, listOfValidNumbers.size());
+        Assertions.assertEquals("123-456-7891", listOfValidNumbers.get(0));
+        Assertions.assertEquals("123-456-7802", listOfValidNumbers.get(1));
+
+        //assert
+    }
 }

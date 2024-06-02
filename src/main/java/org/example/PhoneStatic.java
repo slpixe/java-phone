@@ -66,4 +66,8 @@ public class PhoneStatic {
     static public int numberOfInvalidNumbers(List<String> lines) {
         return (int) lines.stream().filter(line ->!isNumberValid(line)).count();
     }
+
+    static public List<String> listOfValidNumbers(List<String> lines) {
+        return lines.stream().filter(PhoneStatic::isNumberValid).toList();
+    }
 }
