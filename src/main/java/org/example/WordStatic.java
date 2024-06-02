@@ -41,6 +41,7 @@ public class WordStatic {
     }
 
     static public int numberOfWordsWPlus(List<String> lines) {
+        System.out.println(lines.size());
         int bob = lines
                 .stream()
                 .flatMap(
