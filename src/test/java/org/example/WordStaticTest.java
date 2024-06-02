@@ -117,9 +117,13 @@ class WordStaticTest {
     void wordFrequencies() {
         //arrange
         List<String> bob = List.of(
-                "Whiskerby",
+                "Whiskerby pie happy eat pie",
                 "",
-                "Once"
+                "Once happy",
+                "Whiskerby’s curiosity",
+                "(where the life's Whiskerby’s floor)",
+                "where his ever-so-slightly life's mission",
+                "ever-so-slightly"
         );
 
         //act
@@ -131,5 +135,11 @@ class WordStaticTest {
 
         //assert
         Assertions.assertEquals(1L, wordFrequencies.get("whiskerby"));
+        Assertions.assertEquals(2L, wordFrequencies.get("pie"));
+        Assertions.assertEquals(2L, wordFrequencies.get("happy"));
+        Assertions.assertEquals(2L, wordFrequencies.get("whiskerby’s"));
+        Assertions.assertEquals(2L, wordFrequencies.get("ever-so-slightly"));
+        Assertions.assertEquals(2L, wordFrequencies.get("life's"));
+        Assertions.assertEquals(2L, wordFrequencies.get("where"));
     }
 }

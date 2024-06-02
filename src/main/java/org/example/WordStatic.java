@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -62,18 +63,33 @@ public class WordStatic {
         return matches;
     }
 
+//    public static Map<String, Long> wordFrequencies(List<String> lines) {
+//        Map<String, Long> thing1 = lines
+//                .stream()
+//                .collect(
+//                        Collectors.groupingBy(
+//                                String::toLowerCase,
+//                                Collectors.counting()
+//                        )
+//                );
+//
+//        System.out.println(thing1);
+//
+//        return thing1;
+//    }
+
     public static Map<String, Long> wordFrequencies(List<String> lines) {
-        Map<String, Long> thing1 = lines
-                .stream()
-                .collect(
-                        Collectors.groupingBy(
-                                String::toLowerCase,
-                                Collectors.counting()
-                        )
-                );
+        Map<String, Long> wordCounts = new HashMap<>();
 
-        System.out.println(thing1);
+        for (String line : lines) {
+            String[] words = line.toLowerCase().split("\\s+");
+            for (String word : words) {
+                wordCounts.put(word, wordCounts.getOrDefault(word, 0L) + 1);
+            }
+        }
 
-        return thing1;
+        System.out.println(wordCounts); // Print the word frequencies (optional)
+
+        return wordCounts;
     }
 }
