@@ -129,10 +129,6 @@ class WordStaticTest {
         //act
         Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
 
-//        Map<String, Long> frequency = new HashMap<>();
-//        frequency.put("whiskerby", 1L);
-//        frequency.put("once", 1L);
-
         //assert
         Assertions.assertEquals(1L, wordFrequencies.get("whiskerby"));
         Assertions.assertEquals(2L, wordFrequencies.get("pie"));

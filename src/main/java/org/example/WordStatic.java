@@ -16,6 +16,8 @@ public class WordStatic {
 
     public static final String FILE_PATH = "src/main/resources/peachStory.txt";
 
+    public static final Pattern MATCH_ALL_WORDS_PATTERN = Pattern.compile("([\\w-’']+)");
+
     /**
      * Default constructor.
      */
@@ -40,8 +42,6 @@ public class WordStatic {
     }
 
     static public int numberOfWords(List<String> lines) {
-        final Pattern MATCH_ALL_WORDS_PATTERN = Pattern.compile("([\\w-’']+)");
-
         return lines
                 .stream()
                 .mapToInt(
@@ -63,33 +63,13 @@ public class WordStatic {
         return matches;
     }
 
-//    public static Map<String, Long> wordFrequencies(List<String> lines) {
-//        Map<String, Long> thing1 = lines
-//                .stream()
-//                .collect(
-//                        Collectors.groupingBy(
-//                                String::toLowerCase,
-//                                Collectors.counting()
-//                        )
-//                );
-//
-//        System.out.println(thing1);
-//
-//        return thing1;
-//    }
-
     public static Map<String, Long> wordFrequencies(List<String> lines) {
-        Map<String, Long> wordCounts = new HashMap<>();
-
-        for (String line : lines) {
-            String[] words = line.toLowerCase().split("\\s+");
-            for (String word : words) {
-                wordCounts.put(word, wordCounts.getOrDefault(word, 0L) + 1);
-            }
-        }
-
-        System.out.println(wordCounts); // Print the word frequencies (optional)
-
-        return wordCounts;
+        return lines.stream()
+                .flatMap(line -> MATCH_ALL_WORDS_PATTERN.matcher(line).results())
+                .map(matchResult -> matchResult.group().toLowerCase())
+                .collect(Collectors.groupingBy(
+                        word -> word,
+                        Collectors.counting()
+                ));
     }
 }
