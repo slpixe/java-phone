@@ -128,6 +128,7 @@ class WordStaticTest {
 
         //act
         Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
+//        System.out.println(wordFrequencies);
 
         //assert
         Assertions.assertEquals(1L, wordFrequencies.get("whiskerby"));
@@ -137,5 +138,40 @@ class WordStaticTest {
         Assertions.assertEquals(2L, wordFrequencies.get("ever-so-slightly"));
         Assertions.assertEquals(2L, wordFrequencies.get("life's"));
         Assertions.assertEquals(2L, wordFrequencies.get("where"));
+    }
+
+    @Test
+    void testSortedWordFrequencies() {
+        //arrange
+        List<String> bob = List.of(
+                "Whiskerby pie happy pie",
+                "",
+                "pie happy",
+                "Whiskerby’s pie curiosity",
+                "(pie life's Whiskerby’s)",
+                "life's",
+                "ever-so-slightly pie"
+        );
+
+        Map<String, Long> expected = new HashMap<String, Long>();
+        expected.put("pie", 6L);
+        expected.put("whiskerby’s", 2L);
+        expected.put("happy", 2L);
+        expected.put("life's", 2L);
+        expected.put("ever-so-slightly", 1L);
+        expected.put("curiosity", 1L);
+        expected.put("whiskerby", 1L);
+        Map<String, Long> sortedExpected = WordStatic.sortByValue(expected);
+
+        //act
+        Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
+        Map<String, Long> sortedWordFrequencies = WordStatic.sortedWordFrequencies(wordFrequencies);
+        System.out.println("res" + sortedWordFrequencies);
+        System.out.println("exp" + sortedExpected);
+
+        //assert
+//        Assertions.assertEquals(1L, sortedWordFrequencies.get("whiskerby"));
+//        Assertions.assertEquals(6L, sortedWordFrequencies.get("pie"));
+        Assertions.assertEquals(sortedExpected, sortedWordFrequencies);
     }
 }
