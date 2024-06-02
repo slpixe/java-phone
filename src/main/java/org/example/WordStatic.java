@@ -8,8 +8,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class WordStatic {
 
@@ -40,7 +38,7 @@ public class WordStatic {
         return lines.size();
     }
 
-    static public int numberOfWordsWPlus(List<String> lines) {
+    static public int numberOfWords(List<String> lines) {
         final Pattern MATCH_ALL_WORDS_INCLUDING_HYPHENATED = Pattern.compile("([\\w-’']+)");
         //int numberOfWordsOverAllLines = 0;
 

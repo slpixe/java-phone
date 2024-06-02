@@ -47,31 +47,60 @@ class WordStaticTest {
     }
 
     @Test
-    void numberOfWordsWPlus() {
-        //arrange
+    void testSevenWords() {
         List<String> sevenWords = List.of("Whiskerby and the Box of Beguiling Bastet");
+        int numberOfSevenWords = WordStatic.numberOfWords(sevenWords);
+        assertEquals(7, numberOfSevenWords, "Expected 7 words");
+    }
+
+    @Test
+    void testSeventyTwoWords() {
         List<String> seventyTwoWords = List.of(
                 "Whiskerby and the Box of Beguiling Bastet",
                 "",
                 "Once upon a time, in the bustling metropolis of Ankh-Morpork, nestled amidst the shadows of the Unseen University and the ever-so-slightly aromatic Ankh River, there resided a most extraordinary cat. His name was Whiskerby, and he was no ordinary feline. Whiskerby was an adventurous soul, which, in a city like Ankh-Morpork, meant he was either very brave, very foolish, or a little bit of both."
         );
+        int numberOfSeventyTwoWords = WordStatic.numberOfWords(seventyTwoWords);
+        assertEquals(72, numberOfSeventyTwoWords, "Expected 72 words");
+    }
+
+    @Test
+    void testTwoWords() {
         List<String> twoWords = List.of("Whiskerby’s curiosity");
+        int numberOfTwoWords = WordStatic.numberOfWords(twoWords);
+        assertEquals(2, numberOfTwoWords, "Expected 2 words");
+    }
+
+    @Test
+    void testStoryWords() {
         List<String> story = WordStatic.readAllLinesAndReturn();
+        int numberOfStoryWords = WordStatic.numberOfWords(story);
+        assertEquals(952, numberOfStoryWords, "Expected 952 words");
+    }
+
+    @Test
+    void testNumberOfWordsWithTricks() {
+        //arrange
+        List<String> trickyWords = List.of(
+                "Whiskerby’s curiosity",
+                "(where the floor)",
+                "his life's mission",
+                "ever-so-slightly"
+        );
 
         //act
-        int numberOfSevenWords = WordStatic.numberOfWordsWPlus(sevenWords);
-        int numberOfSeventyTwoWords = WordStatic.numberOfWordsWPlus(seventyTwoWords);
-        int numberOfTwoWords = WordStatic.numberOfWordsWPlus(twoWords);
-        int numberOfStoryWords = WordStatic.numberOfWordsWPlus(story);
+        int numberOfA1Words = WordStatic.numberOfWords(trickyWords.get(0).lines().toList());
+        int numberOfA2Words = WordStatic.numberOfWords(trickyWords.get(1).lines().toList());
+        int numberOfA3Words = WordStatic.numberOfWords(trickyWords.get(2).lines().toList());
+        int numberOfA4Words = WordStatic.numberOfWords(trickyWords.get(3).lines().toList());
 
         //assert
-        assertEquals(7, numberOfSevenWords);
-        Assertions.assertEquals(72, numberOfSeventyTwoWords);
-        Assertions.assertEquals(2, numberOfTwoWords);
-        Assertions.assertEquals(952, numberOfStoryWords);
-//        assertThat(numberOfWords, org.hamcrest.Matchers.greaterThan(5));
-//        Assertions.assertEquals(72, numberOfWords);
+        assertEquals(2, numberOfA1Words, "Expected 2 words");
+        assertEquals(3, numberOfA2Words, "Expected 3 words");
+        assertEquals(3, numberOfA3Words, "Expected 3 words");
+        assertEquals(1, numberOfA4Words, "Expected 1 words");
     }
+
 
     @Test
     void runTest() {
