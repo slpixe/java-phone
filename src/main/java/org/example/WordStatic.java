@@ -6,14 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class WordStatic {
 
     public static final String FILE_PATH = "src/main/resources/peachStory.txt";
-
-    //public static final Pattern REGEX_VALID_PHONE_NUMBER = Pattern.compile("(\\(\\d{3}\\)\\s{1}\\d{3}-{1}\\d{4})|(\\d{3}\\s{1}\\d{3}\\s{1}\\d{4})|(\\d{3}-{1}\\d{3}-\\d{4})");
 
     /**
      * Default constructor.
@@ -40,17 +40,6 @@ public class WordStatic {
 
     static public int numberOfWords(List<String> lines) {
         final Pattern MATCH_ALL_WORDS_PATTERN = Pattern.compile("([\\w-’']+)");
-        //int numberOfWordsOverAllLines = 0;
-
-//        for (String line : lines) {
-//            Matcher matcher = MATCH_ALL_WORDS_PATTERN.matcher(line);
-//            while (matcher.find()) {
-//                numberOfWordsOverAllLines++;
-//            }
-//        }
-
-//        System.out.println("Total number of words across all lines: " + numberOfWordsOverAllLines);
-//        return numberOfWordsOverAllLines;
 
         return lines
                 .stream()
@@ -71,5 +60,20 @@ public class WordStatic {
             matches++;
         }
         return matches;
+    }
+
+    public static Map<String, Long> wordFrequencies(List<String> lines) {
+        Map<String, Long> thing1 = lines
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                String::toLowerCase,
+                                Collectors.counting()
+                        )
+                );
+
+        System.out.println(thing1);
+
+        return thing1;
     }
 }

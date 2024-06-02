@@ -3,7 +3,9 @@ package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -109,5 +111,25 @@ class WordStaticTest {
 
         int matches2 = WordStatic.runTest("\\w+", "Whiskerby and the Box of Beguiling Bastet");
         assertEquals(7, matches2);
+    }
+
+    @Test
+    void wordFrequencies() {
+        //arrange
+        List<String> bob = List.of(
+                "Whiskerby",
+                "",
+                "Once"
+        );
+
+        //act
+        Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
+
+//        Map<String, Long> frequency = new HashMap<>();
+//        frequency.put("whiskerby", 1L);
+//        frequency.put("once", 1L);
+
+        //assert
+        Assertions.assertEquals(1L, wordFrequencies.get("whiskerby"));
     }
 }
