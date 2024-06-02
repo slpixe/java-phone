@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordStaticTest {
@@ -19,8 +21,8 @@ class WordStaticTest {
         List<String> lines = WordStatic.readAllLinesAndReturn();
 
         //assert
-        assertThat(lines.size(), org.hamcrest.Matchers.greaterThan(5));
-        assertThat(lines.get(0), org.hamcrest.Matchers.equalTo("Whiskerby and the Box of Beguiling Bastet"));
+        assertThat(lines.size(), greaterThan(5));
+        assertThat(lines.get(0), equalTo("Whiskerby and the Box of Beguiling Bastet"));
     }
 
     @Test
@@ -30,21 +32,20 @@ class WordStaticTest {
         List<String> lines = WordStatic.readAllLinesAndReturn("src/main/resources/peachStory.txt");
 
         //assert
-        assertThat(lines.size(), org.hamcrest.Matchers.greaterThan(5));
-        assertThat(lines.get(0), org.hamcrest.Matchers.equalTo("Whiskerby and the Box of Beguiling Bastet"));
+        assertThat(lines.size(), greaterThan(5));
+        assertThat(lines.get(0), equalTo("Whiskerby and the Box of Beguiling Bastet"));
     }
 
     @Test
     void numberOfLines() {
         //arrange
         List<String> lines = WordStatic.readAllLinesAndReturn("src/main/resources/peachStory.txt");
-        System.out.println(lines);
 
         //act
         int numberOfLines = WordStatic.numberOfLines(lines);
 
         //assert
-        assertThat(numberOfLines, org.hamcrest.Matchers.greaterThan(5));
+        assertThat(numberOfLines, greaterThan(5));
         assertEquals(37, numberOfLines);
     }
 
@@ -106,11 +107,9 @@ class WordStaticTest {
 
     @Test
     void runTest() {
-        int matches1 = WordStatic.runTest("foo", "foofoo");
-        assertEquals(2, matches1);;
+        assertEquals(2, WordStatic.runTest("foo", "foofoo"));
 
-        int matches2 = WordStatic.runTest("\\w+", "Whiskerby and the Box of Beguiling Bastet");
-        assertEquals(7, matches2);
+        assertEquals(7, WordStatic.runTest("\\w+", "Whiskerby and the Box of Beguiling Bastet"));
     }
 
     @Test
@@ -128,7 +127,6 @@ class WordStaticTest {
 
         //act
         Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
-//        System.out.println(wordFrequencies);
 
         //assert
         Assertions.assertEquals(1L, wordFrequencies.get("whiskerby"));
@@ -153,7 +151,7 @@ class WordStaticTest {
                 "ever-so-slightly pie"
         );
 
-        Map<String, Long> expected = new HashMap<String, Long>();
+        HashMap<String, Long> expected = new HashMap<String, Long>();
         expected.put("pie", 6L);
         expected.put("whiskerby’s", 2L);
         expected.put("happy", 2L);
@@ -166,12 +164,10 @@ class WordStaticTest {
         //act
         Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
         Map<String, Long> sortedWordFrequencies = WordStatic.sortByValue(wordFrequencies);
-        System.out.println("res" + sortedWordFrequencies);
-        System.out.println("exp" + sortedExpected);
 
         //assert
-//        Assertions.assertEquals(1L, sortedWordFrequencies.get("whiskerby"));
-//        Assertions.assertEquals(6L, sortedWordFrequencies.get("pie"));
+        Assertions.assertEquals(1L, sortedWordFrequencies.get("whiskerby"));
+        Assertions.assertEquals(6L, sortedWordFrequencies.get("pie"));
         Assertions.assertEquals(sortedExpected, sortedWordFrequencies);
     }
 }
