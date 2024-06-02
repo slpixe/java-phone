@@ -165,7 +165,7 @@ class WordStaticTest {
 
         //act
         Map<String, Long> wordFrequencies = WordStatic.wordFrequencies(bob);
-        Map<String, Long> sortedWordFrequencies = WordStatic.sortedWordFrequencies(wordFrequencies);
+        Map<String, Long> sortedWordFrequencies = WordStatic.sortByValue(wordFrequencies);
         System.out.println("res" + sortedWordFrequencies);
         System.out.println("exp" + sortedExpected);
 

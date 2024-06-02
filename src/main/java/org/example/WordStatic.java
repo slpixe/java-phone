@@ -75,7 +75,9 @@ public class WordStatic {
     }
 
     public static Map<String, Long> sortByValue(Map<String, Long> wordFrequencies) {
-        return wordFrequencies.entrySet().stream()
+        return wordFrequencies
+                .entrySet()
+                .stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -83,25 +85,5 @@ public class WordStatic {
                         (e1, e2) -> e1,
                         LinkedHashMap::new
                 ));
-    }
-
-    public static Map<String, Long> sortedWordFrequencies(Map<String, Long> wordFrequencies) {
-        return wordFrequencies
-                .entrySet()
-                .stream()
-                .sorted(
-                        Map
-                                .Entry
-                                .<String, Long>comparingByValue()
-                                .reversed()
-                )
-                .collect(
-                        Collectors.toMap(
-                            Map.Entry::getKey,
-                            Map.Entry::getValue,
-                            (e1, e2) -> e1,
-                            LinkedHashMap::new
-                        )
-                );
     }
 }
