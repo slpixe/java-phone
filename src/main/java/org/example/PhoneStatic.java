@@ -48,4 +48,8 @@ public class PhoneStatic {
     static public List<String> removeEmptyLines(List<String> lines) {
         return lines.stream().filter(line ->!line.isEmpty()).toList();
     }
+
+    static public int numberOfLines(List<String> lines) {
+        return lines.size();
+    }
 }

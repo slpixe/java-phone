@@ -36,28 +36,57 @@ class PhoneStaticTest {
     @Test
     void removeComments() {
         //arrange
-        List<String> lines = PhoneStatic.readAllLinesAndReturn();
+        List<String> lines = List.of(
+                "#Valid phone numbers:",
+                "123-456-789",
+                "",
+                "123-456-780"
+        );
 
         //act
         List<String> linesWithoutComments = PhoneStatic.removeComments(lines);
 
         //assert
-        Assertions.assertTrue(linesWithoutComments.size() > 5);
-        Assertions.assertFalse(linesWithoutComments.get(0).startsWith("#"));
+        Assertions.assertEquals(lines.size(), 4);
+        Assertions.assertEquals(linesWithoutComments.size(), 3);
+        Assertions.assertEquals(lines.get(0), "#Valid phone numbers:");
+        Assertions.assertNotEquals(linesWithoutComments.get(0), "#Valid phone numbers:");
     }
 
     @Test
     void removeEmptyLines() {
         //arrange
-        List<String> lines = PhoneStatic.readAllLinesAndReturn();
+        List<String> lines = List.of(
+                "#Valid phone numbers:",
+                "123-456-789",
+                "",
+                "123-456-780"
+        );
 
         //act
         List<String> linesWithoutEmptyLines = PhoneStatic.removeEmptyLines(lines);
 
         //assert
-        // lines starts at 12 rows, after running removeEmptyLines it goes to 11 rows, calling it multiple times keeps it at 11 rows
-        Assertions.assertEquals(13, lines.size());
-        Assertions.assertEquals(12, linesWithoutEmptyLines.size());
-        Assertions.assertFalse(linesWithoutEmptyLines.get(0).isEmpty());
+        Assertions.assertEquals(4, lines.size());
+        Assertions.assertEquals(3, linesWithoutEmptyLines.size());
+        Assertions.assertEquals(lines.get(2), "");
+        Assertions.assertEquals(linesWithoutEmptyLines.get(2), "123-456-780");
+    }
+
+    @Test
+    void numberOfLines() {
+        //arrange
+        List<String> lines = List.of(
+                "#Valid phone numbers:",
+                "123-456-789",
+                "",
+                "123-456-780"
+                );
+
+        //act
+        int numberOfLines = PhoneStatic.numberOfLines(lines);
+
+        //assert
+        Assertions.assertEquals(4, numberOfLines);
     }
 }
