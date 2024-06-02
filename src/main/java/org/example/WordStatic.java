@@ -41,18 +41,28 @@ public class WordStatic {
     }
 
     static public int numberOfWordsWPlus(List<String> lines) {
-        System.out.println(lines.size());
-        int bob = lines
+        final Pattern MATCH_ALL_WORDS_INCLUDING_HYPHENATED = Pattern.compile("([\\w-’]+)");
+        //int numberOfWordsOverAllLines = 0;
+
+//        for (String line : lines) {
+//            Matcher matcher = MATCH_ALL_WORDS_INCLUDING_HYPHENATED.matcher(line);
+//            while (matcher.find()) {
+//                numberOfWordsOverAllLines++;
+//            }
+//        }
+
+//        System.out.println("Total number of words across all lines: " + numberOfWordsOverAllLines);
+//        return numberOfWordsOverAllLines;
+
+        return lines
                 .stream()
-                .flatMap(
-                        line -> Stream.of(line.split("\\w+"))
+                .mapToInt(
+                        line -> (int) MATCH_ALL_WORDS_INCLUDING_HYPHENATED
+                                .matcher(line)
+                                .results()
+                                .count()
                 )
-                .collect(
-                        Collectors.toList()
-                )
-                .size();
-        System.out.println(bob);
-        return bob;
+                .sum();
     }
 
     public static int runTest(String regex, String text) {
