@@ -56,16 +56,19 @@ class WordStaticTest {
                 "Once upon a time, in the bustling metropolis of Ankh-Morpork, nestled amidst the shadows of the Unseen University and the ever-so-slightly aromatic Ankh River, there resided a most extraordinary cat. His name was Whiskerby, and he was no ordinary feline. Whiskerby was an adventurous soul, which, in a city like Ankh-Morpork, meant he was either very brave, very foolish, or a little bit of both."
         );
         List<String> twoWords = List.of("Whiskerby’s curiosity");
+        List<String> story = WordStatic.readAllLinesAndReturn();
 
         //act
         int numberOfSevenWords = WordStatic.numberOfWordsWPlus(sevenWords);
         int numberOfSeventyTwoWords = WordStatic.numberOfWordsWPlus(seventyTwoWords);
         int numberOfTwoWords = WordStatic.numberOfWordsWPlus(twoWords);
+        int numberOfStoryWords = WordStatic.numberOfWordsWPlus(story);
 
         //assert
         assertEquals(7, numberOfSevenWords);
         Assertions.assertEquals(72, numberOfSeventyTwoWords);
         Assertions.assertEquals(2, numberOfTwoWords);
+        Assertions.assertEquals(952, numberOfStoryWords);
 //        assertThat(numberOfWords, org.hamcrest.Matchers.greaterThan(5));
 //        Assertions.assertEquals(72, numberOfWords);
     }

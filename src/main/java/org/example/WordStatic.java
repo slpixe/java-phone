@@ -41,7 +41,7 @@ public class WordStatic {
     }
 
     static public int numberOfWordsWPlus(List<String> lines) {
-        final Pattern MATCH_ALL_WORDS_INCLUDING_HYPHENATED = Pattern.compile("([\\w-’]+)");
+        final Pattern MATCH_ALL_WORDS_INCLUDING_HYPHENATED = Pattern.compile("([\\w-’']+)");
         //int numberOfWordsOverAllLines = 0;
 
 //        for (String line : lines) {
