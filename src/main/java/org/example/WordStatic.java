@@ -23,6 +23,15 @@ public class WordStatic {
      */
     WordStatic() {}
 
+
+    /**
+     * Reads all lines from the default file and returns them as a list of strings.
+     * This is a convenience method that calls the readAllLinesAndReturn(String filePath) method
+     * with the default file path defined in the FILE_PATH constant.
+     *
+     * @return A list of strings, where each string is a line from the default file.
+     * If an error occurs while reading the file, an empty list is returned.
+     */
     static public List<String> readAllLinesAndReturn() {
         return WordStatic.readAllLinesAndReturn(FILE_PATH);
     }
