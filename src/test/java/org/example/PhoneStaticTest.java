@@ -156,7 +156,5 @@ class PhoneStaticTest {
         Assertions.assertEquals(2, listOfValidNumbers.size());
         Assertions.assertEquals("123-456-7891", listOfValidNumbers.get(0));
         Assertions.assertEquals("123-456-7802", listOfValidNumbers.get(1));
-
-        //assert
     }
 }
