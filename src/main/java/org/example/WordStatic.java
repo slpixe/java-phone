@@ -12,10 +12,41 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * A utility class for performing various text analysis operations, such as counting lines, words, and word frequencies.
+ * This class provides static methods for reading text files, calculating line and word counts, and calculating word frequencies.
+ * It also includes a method for sorting word frequencies by value in descending order.
+ *
+ * <p>The class uses a regular expression pattern to match words in a given text.
+ * The pattern matches one or more word characters, hyphens, or apostrophes.
+ * Word characters include uppercase and lowercase letters, digits, and underscores.
+ *
+ * <p>The class also provides a method for running a test with a regular expression and a given text.
+ * This method counts the number of matches of the regular expression in the text.
+ *
+ * <p>The default file path for the Peach Story text file is specified in the {@link #FILE_PATH} constant.
+ * This constant can be used when reading or writing data from/to the file.
+ *
+ * <p>The class is thread-safe and can be used in a multi-threaded environment.
+ */
 public class WordStatic {
 
+    /**
+     * The file path for the Peach Story text file.
+     * This constant specifies the location of the "peachStory.txt" file within the project's resources directory.
+     * Use this path when reading or writing data from/to the file.
+     */
     public static final String FILE_PATH = "src/main/resources/peachStory.txt";
 
+    /**
+     * A regular expression pattern that matches all words in a given text.
+     * <p>
+     * The pattern matches one or more word characters, hyphens, or apostrophes.
+     * Word characters include uppercase and lowercase letters, digits, and underscores.
+     * <p>
+     * This pattern is used to extract words from a text for further analysis,
+     * such as counting the number of words or calculating word frequencies.
+     */
     public static final Pattern MATCH_ALL_WORDS_PATTERN = Pattern.compile("([\\w-’']+)");
 
     /**
